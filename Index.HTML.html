@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Neeraj Giri — Creative Writer & Storyteller</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --ink: #0e0c0a;
+    --paper: #f5f0e8;
+    --cream: #ede7d9;
+    --accent: #c8402a;
+    --gold: #b8924a;
+    --muted: #7a7268;
+    --rule: #c9c0b0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0.5;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 3px double var(--rule);
+    padding: 18px 60px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--paper);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .masthead-issue {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .masthead-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  .masthead-contact {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    text-align: right;
+    letter-spacing: 0.05em;
+  }
+
+  .masthead-contact a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--rule);
+    overflow: hidden;
+  }
+
+  .hero-left {
+    padding: 80px 60px 80px 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-right: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--accent);
+  }
+
+  .hero-overline {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 28px;
+    opacity: 0;
+    animation: fadeUp 0.8s ease forwards 0.2s;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 7vw, 88px);
+    font-weight: 900;
+    line-height: 0.95;
+    color: var(--ink);
+    margin-bottom: 36px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.4s;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero-deck {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #3a3530;
+    max-width: 440px;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.6s;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    margin-top: 56px;
+    padding-top: 40px;
+    border-top: 1px solid var(--rule);
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 0.8s;
+  }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  .hero-right {
+    background: var(--ink);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 60px;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 30% 20%, rgba(200,64,42,0.15) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 80%, rgba(184,146,74,0.1) 0%, transparent 50%);
+  }
+
+  .hero-pull-quote {
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 1s ease forwards 1s;
+  }
+
+  .pull-quote-mark {
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    line-height: 0.7;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 20px;
+    opacity: 0.6;
+  }
+
+  .pull-quote-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 32px);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--paper);
+    line-height: 1.4;
+    margin-bottom: 24px;
+  }
+
+  .pull-quote-attr {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 220px;
+    font-weight: 900;
+    color: rgba(255,255,255,0.025);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: -10px;
+  }
+
+  /* ── SECTION WRAPPER ── */
+  section {
+    padding: 80px 60px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 48px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .about-sidebar h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1.05;
+    color: var(--ink);
+  }
+
+  .about-sidebar h2 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .about-body p {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #2a2520;
+    margin-bottom: 22px;
+  }
+
+  .about-body p:first-child::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 72px;
+    font-weight: 900;
+    float: left;
+    line-height: 0.75;
+    margin-right: 10px;
+    margin-top: 8px;
+    color: var(--accent);
+  }
+
+  /* ── EXPERIENCE ── */
+  .exp-entry {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    padding: 40px 0;
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .exp-entry:last-child { border-bottom: none; }
+
+  .exp-entry::before {
+    content: '';
+    position: absolute;
+    left: -60px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: transparent;
+    transition: background 0.3s;
+  }
+
+  .exp-entry:hover::before { background: var(--accent); }
+
+  .exp-meta {
+    padding-top: 4px;
+  }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .exp-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: 0.05em;
+  }
+
+  .exp-content {}
+
+  .exp-role {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 16px;
+    line-height: 1.2;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    padding: 0;
+  }
+
+  .exp-bullets li {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.7;
+    color: #3a3530;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 10px;
+  }
+
+  .exp-bullets li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-weight: 400;
+  }
+
+  .exp-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 3px 10px;
+    margin-top: 14px;
+    margin-right: 6px;
+  }
+
+  .exp-tag.highlight {
+    background: var(--accent);
+  }
+
+  /* ── METRICS BAND ── */
+  .metrics-band {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px;
+    border-bottom: none;
+  }
+
+  .metrics-band .section-label {
+    color: var(--gold);
+  }
+
+  .metrics-band .section-label::after {
+    background: rgba(255,255,255,0.15);
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.1);
+  }
+
+  .metric-cell {
+    background: var(--ink);
+    padding: 40px 32px;
+    text-align: center;
+    transition: background 0.3s;
+    cursor: default;
+  }
+
+  .metric-cell:hover {
+    background: #1e1a16;
+  }
+
+  .metric-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 64px;
+    font-weight: 900;
+    color: var(--accent);
+    line-height: 1;
+    display: block;
+  }
+
+  .metric-unit {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    vertical-align: super;
+    color: var(--gold);
+  }
+
+  .metric-desc {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.5);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  /* ── SKILLS ── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--rule);
+  }
+
+  .skill-block {
+    background: var(--paper);
+    padding: 36px 40px;
+    transition: background 0.25s;
+  }
+
+  .skill-block:hover {
+    background: var(--cream);
+  }
+
+  .skill-block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .skill-tag {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--ink);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 2px;
+  }
+
+  /* ── AWARDS ── */
+  .awards-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .award-item {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--rule);
+    transition: padding-left 0.25s;
+  }
+
+  .award-item:hover { padding-left: 12px; }
+
+  .award-bullet {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .award-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--ink);
+  }
+
+  /* ── CERTIFICATIONS ── */
+  .cert-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+
+  .cert-card {
+    border: 1px solid var(--rule);
+    padding: 28px 28px 24px;
+    transition: border-color 0.25s, transform 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cert-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .cert-card:hover::before { transform: scaleX(1); }
+  .cert-card:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+  .cert-org {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .cert-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    border-top: 4px solid var(--accent);
+  }
+
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .footer-name em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .footer-tagline {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 14px;
+  }
+
+  .footer-contact {
+    text-align: right;
+  }
+
+  .footer-contact-item {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+    color: rgba(245,240,232,0.7);
+    margin-bottom: 10px;
+  }
+
+  .footer-contact-item a {
+    color: var(--paper);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+
+  .footer-contact-item a:hover {
+    color: var(--accent);
+  }
+
+  /* ── CASE STUDIES ── */
+  .case-study {
+    margin: 0 -60px;
+    padding: 56px 60px 52px;
+    background: var(--cream);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    position: relative;
+  }
+
+  .case-study::before {
+    content: 'CASE STUDY';
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    position: absolute;
+    top: 20px;
+    left: 60px;
+  }
+
+  .case-study-inner {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 48px;
+    padding-top: 8px;
+  }
+
+  .case-study-sidebar {}
+
+  .case-study-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    font-style: italic;
+    color: var(--ink);
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+
+  .case-study-meta-item {
+    margin-bottom: 14px;
+  }
+
+  .case-study-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+
+  .case-study-meta-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+
+  .case-study-body {}
+
+  .case-study-section {
+    margin-bottom: 28px;
+  }
+
+  .case-study-section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 8px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .case-study-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .case-study-body p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #3a3530;
+    margin-bottom: 0;
+  }
+
+  .case-study-result {
+    margin-top: 28px;
+    padding: 24px 28px;
+    background: var(--ink);
+    color: var(--paper);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .case-study-result-icon {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--accent);
+    flex-shrink: 0;
+    line-height: 1;
+  }
+
+  .case-study-result-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-style: italic;
+    color: rgba(245,240,232,0.9);
+    line-height: 1.65;
+  }
+
+  .case-study-result-text strong {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 400;
+  }
+
+  @media (max-width: 900px) {
+    .case-study { margin: 0 -28px; padding: 44px 28px 40px; }
+    .case-study::before { left: 28px; }
+    .case-study-inner { grid-template-columns: 1fr; gap: 28px; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-right { min-height: 340px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .exp-entry { grid-template-columns: 1fr; gap: 12px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .cert-grid { grid-template-columns: 1fr 1fr; }
+    section, .metrics-band, footer { padding: 48px 28px; }
+    .masthead { padding: 14px 28px; }
+    .hero-left { padding: 60px 28px; }
+    .hero-right { padding: 40px 28px; }
+    footer { grid-template-columns: 1fr; }
+    .footer-contact { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-issue">
+    <span>Portfolio · 2025</span>
+  </div>
+  <div class="masthead-name">Neeraj Giri</div>
+  <div class="masthead-contact">
+    +91 81405 34532<br>
+    <a href="mailto:neerajgiriwhowrites@gmail.com">neerajgiriwhowrites@gmail.com</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-left">
+    <div class="hero-overline">Creative Writer · Storyteller · Lead</div>
+    <h1 class="hero-headline">
+      Story<br>is the<br><em>strategy.</em>
+    </h1>
+    <p class="hero-deck">
+      Seven years at the intersection of narrative and performance — from OTT platforms to enterprise campaigns, from Bollywood scripts to AI-generated visuals. The work has always been the same: make people stop.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">7<span style="font-size:22px;color:var(--accent)">+</span></div>
+        <div class="stat-label">Years in craft</div>
+      </div>
+      <div>
+        <div class="stat-num">500<span style="font-size:22px;color:var(--accent)">+</span></div>
+        <div class="stat-label">Titles written</div>
+      </div>
+      <div>
+        <div class="stat-num">7</div>
+        <div class="stat-label">Writers led</div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-bg-text">STORY</div>
+    <div class="hero-pull-quote">
+      <span class="pull-quote-mark">"</span>
+      <p class="pull-quote-text">A great promo is not just well-written — it earns its place on screen by making people stop.</p>
+      <span class="pull-quote-attr">— Neeraj Giri</span>
+    </div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+  <div class="section-label">About</div>
+  <div class="about-grid reveal">
+    <div class="about-sidebar">
+      <h2>The<br><em>writer</em><br>behind<br>the<br>work.</h2>
+    </div>
+    <div class="about-body">
+      <p>
+        Creative writer with 7+ years of experience across OTT, film, entertainment, and brand content — spanning scriptwriting, promo writing, team leadership, and campaign performance. I have led writers, shaped creative output from brief to final delivery, and built content that was measured not just on quality but on results: clicks, retention, conversion.
+      </p>
+      <p>
+        My work lives at the intersection of story and performance — understanding that the best writing doesn't just read well, it converts. Whether it's a Hotstar synopsis, a UK enterprise email campaign, or a federal RFP, I bring the same discipline: find the angle, nail the tone, earn the result.
+      </p>
+      <p>
+        I was part of the scriptwriting team for <em>Shershaah</em>, worked embedded on <em>Bigg Boss</em>, <em>Naagin</em>, and <em>Roadies</em>, and have spent the last year building fluency in AI-assisted creative workflows — writing prompts for LLM-based image and video generation at Turing.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS BAND -->
+<div class="metrics-band">
+  <div class="section-label">Impact by Numbers</div>
+  <div class="metrics-grid reveal">
+    <div class="metric-cell">
+      <span class="metric-number">64<span class="metric-unit">%</span></span>
+      <div class="metric-desc">CTR achieved for UK<br>enterprise clients<br>(up from 33%)</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-number">15<span class="metric-unit">%</span></span>
+      <div class="metric-desc">Viewer retention lift<br>on managed OTT<br>titles</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-number">$70<span class="metric-unit">K</span></span>
+      <div class="metric-desc">US Federal contracts<br>secured via RFP<br>writing</div>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-number">17<span class="metric-unit">%</span></span>
+      <div class="metric-desc">Audience engagement<br>improvement on<br>integrated campaigns</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section>
+  <div class="section-label">Experience</div>
+
+  <div class="exp-entry reveal">
+    <div class="exp-meta">
+      <div class="exp-period">2025 – Present</div>
+      <div class="exp-company">Turing</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">AI Training Specialist — Visual Prompt Writer</div>
+      <ul class="exp-bullets">
+        <li>Write structured prompts for LLM-based image and video generation — scene composition, camera angle, lighting, mood, and character rendered in language precise enough to guide accurate visual outputs.</li>
+        <li>Test and refine prompt variants based on model outputs, adjusting specificity and framing to close the gap between intended and generated visuals.</li>
+        <li>Building practical fluency in AI-assisted workflows — exploring how generative tools can speed up ideation and expand creative range.</li>
+      </ul>
+      <span class="exp-tag highlight">AI Prompting</span>
+      <span class="exp-tag">Generative Visual</span>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: TURING -->
+  <div class="case-study reveal">
+    <div class="case-study-inner">
+      <div class="case-study-sidebar">
+        <div class="case-study-title">Teaching a Model to See What I'm Imagining</div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Client / Platform</div>
+          <div class="case-study-meta-value">Turing · LLM Visual Training</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Format</div>
+          <div class="case-study-meta-value">Image & Video Generation Prompts</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">My Role</div>
+          <div class="case-study-meta-value">Prompt Author · Output Evaluator</div>
+        </div>
+      </div>
+      <div class="case-study-body">
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Brief</div>
+          <p>Turing needed writers who could do something most writers can't: describe a visual so precisely that a generative AI model would produce it accurately — first time, every time. The work wasn't about creative writing in the traditional sense. It was about translating imagination into machine-readable instruction.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">My Approach</div>
+          <p>I developed a personal framework for prompt architecture — breaking every image into layers: environment, light source, subject position, mood, camera angle, colour temperature, and negative space. Rather than writing poetically, I learned to write structurally, treating each prompt like a visual brief for a director of photography. When a model returned an output that missed the mark, I would reverse-engineer the gap: was it the lighting descriptor? The subject framing? The absence of a negative prompt? I documented each mismatch and adjusted accordingly, building a working vocabulary of what the model responded to vs. what it ignored.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">What I Learned</div>
+          <p>Precision is a creative act. The most effective prompts weren't the most detailed — they were the most intentional. Knowing which details to include and which to omit is the skill. This work reshaped how I think about all writing: clarity isn't a constraint, it's the whole job.</p>
+        </div>
+        <div class="case-study-result">
+          <div class="case-study-result-icon">→</div>
+          <div class="case-study-result-text">Output accuracy improved consistently across prompt iterations — with refined descriptors cutting revision cycles by roughly <strong>40%</strong> on complex scene compositions. The work is ongoing, with each new brief expanding my fluency in AI-assisted creative workflows.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-entry reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Oct 2024 – Present</div>
+      <div class="exp-company">Freelance</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Content, Copywriter & Scriptwriter</div>
+      <ul class="exp-bullets">
+        <li>Contributed to the scriptwriting team for Bollywood film <em>Shershaah</em> — story development and scripting within a larger creative team.</li>
+        <li>Partner with start-ups and SaaS clients on brand voice and web content — improved organic traffic by 9% in two months through SEO-driven copy.</li>
+        <li>Write across formats and variants per brief, adapting tone and style for different platforms and audience profiles.</li>
+      </ul>
+      <span class="exp-tag highlight">Scriptwriting</span>
+      <span class="exp-tag">Bollywood</span>
+      <span class="exp-tag">SEO</span>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: FREELANCE / SHERSHAAH -->
+  <div class="case-study reveal">
+    <div class="case-study-inner">
+      <div class="case-study-sidebar">
+        <div class="case-study-title">Writing the Gaps a War Film Leaves Unspoken</div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Project</div>
+          <div class="case-study-meta-value">Shershaah · Bollywood Feature Film</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Format</div>
+          <div class="case-study-meta-value">Screenplay · Story Development</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">My Role</div>
+          <div class="case-study-meta-value">Contributing Writer · Script Team</div>
+        </div>
+      </div>
+      <div class="case-study-body">
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Brief</div>
+          <p>Shershaah is a biographical war film based on the life of Captain Vikram Batra — a decorated soldier who gave his life during the Kargil War. The challenge for the writing team was not dramatisation. The facts were already dramatic. The challenge was emotional truth: how do you write a soldier's tenderness, his humour, his love — in a way that makes his sacrifice hit harder, not softer?</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">My Contribution</div>
+          <p>Working within the broader script team, my contribution centred on character consistency — ensuring Vikram's voice felt singular across scenes, and that quieter personal moments didn't flatten into generic war-film sentiment. I worked on dialogue refinements and scene-level story beats, paying particular attention to the emotional rhythm between the conflict sequences and the personal life woven through them. As someone with a military background myself, I brought a grounded instinct for how soldiers actually speak — and what they don't say.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">What I Learned</div>
+          <p>Restraint is the most powerful tool in biographical writing. The scenes that move an audience most are rarely the ones with the most words. Knowing when to stop writing — and trust the actor, the frame, the silence — is a skill I carry into every format I work in now.</p>
+        </div>
+        <div class="case-study-result">
+          <div class="case-study-result-icon">→</div>
+          <div class="case-study-result-text">Shershaah released to widespread critical acclaim and became one of the most-watched Hindi films on Amazon Prime Video in its opening weeks — <strong>a story that deserved to be told well, and was.</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-entry reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Sep 2023 – Oct 2024</div>
+      <div class="exp-company">Kunvarji Group</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Lead Content & Copywriter (Marcom)</div>
+      <ul class="exp-bullets">
+        <li>Led creative direction for marketing campaigns end-to-end — from initial concept through to final asset delivery.</li>
+        <li>Managed and mentored a team of seven writers, setting creative standards and building a team culture around clarity and strong storytelling.</li>
+        <li>Presented campaign strategy and performance results to senior stakeholders and external partners.</li>
+        <li>Introduced content formats that measurably improved campaign engagement and gave the work a more distinct point of view.</li>
+      </ul>
+      <span class="exp-tag highlight">Team Lead</span>
+      <span class="exp-tag">Campaign Strategy</span>
+      <span class="exp-tag">Creative Direction</span>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: KUNVARJI GROUP -->
+  <div class="case-study reveal">
+    <div class="case-study-inner">
+      <div class="case-study-sidebar">
+        <div class="case-study-title">Building a Content Team That Could Think, Not Just Write</div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Organisation</div>
+          <div class="case-study-meta-value">Kunvarji Group · Financial Services</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Scope</div>
+          <div class="case-study-meta-value">Team of 7 · Full Campaign Ownership</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">My Role</div>
+          <div class="case-study-meta-value">Lead Content & Copywriter · Marcom</div>
+        </div>
+      </div>
+      <div class="case-study-body">
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Situation</div>
+          <p>When I joined Kunvarji Group's marketing communications function, the content team was executing well on briefs — but not generating them. Writers were good at producing, less confident at shaping the creative idea upstream. Output was consistent; it wasn't distinctive. The organisation needed a team that could own campaigns creatively, not just fulfil them.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">What I Did</div>
+          <p>I restructured how the team approached briefs — introducing a pre-production stage where every campaign began with a defined creative angle, a target emotional response, and a clear point of differentiation before a single line of copy was written. I ran weekly creative reviews where ideas were interrogated, not just approved, building a team culture where pushback was part of the process. For external-facing campaigns, I personally led the stakeholder presentations — translating creative rationale into business language, and bringing leadership inside the thinking rather than just showing them the output.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">What Changed</div>
+          <p>Campaign engagement improved measurably. More importantly, the team began generating creative concepts independently — pitching angles I hadn't briefed. That was the real outcome: a room of seven writers who could all lead a campaign, not just staff one.</p>
+        </div>
+        <div class="case-study-result">
+          <div class="case-study-result-icon">→</div>
+          <div class="case-study-result-text">Audience engagement across integrated campaigns rose by <strong>17%</strong>. Several content formats introduced during this period were adopted as standard across Kunvarji's marketing output well after I moved on.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-entry reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Apr 2023 – Sep 2023</div>
+      <div class="exp-company">IMS People Possible</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Senior Copywriter (Lead)</div>
+      <ul class="exp-bullets">
+        <li>Led integrated marketing campaigns for UK-based enterprise clients — improved audience engagement by 17% and drove CTR from 33% to 64%.</li>
+        <li>Used campaign performance data to refine creative approach mid-flight — treating metrics not as a report card but as a brief for the next iteration.</li>
+      </ul>
+      <span class="exp-tag highlight">UK Market</span>
+      <span class="exp-tag">Email Marketing</span>
+      <span class="exp-tag">CTR Optimisation</span>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: IMS PEOPLE POSSIBLE -->
+  <div class="case-study reveal">
+    <div class="case-study-inner">
+      <div class="case-study-sidebar">
+        <div class="case-study-title">Doubling CTR for a UK Enterprise Client in Six Months</div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Organisation</div>
+          <div class="case-study-meta-value">IMS People Possible</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Market</div>
+          <div class="case-study-meta-value">UK · Enterprise · B2B</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Channel</div>
+          <div class="case-study-meta-value">Email · Integrated Campaigns</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Result</div>
+          <div class="case-study-meta-value">CTR: 33% → 64%</div>
+        </div>
+      </div>
+      <div class="case-study-body">
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Problem</div>
+          <p>IMS People Possible's UK enterprise clients were running email campaigns that generated opens but not action. The copy was professional — but professionally forgettable. Subject lines were descriptive rather than compelling. Body copy told recipients what the product did, not why it mattered to them, today. Click-through rates had plateaued at 33% and there was no clear strategic reason for the ceiling.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Reframe</div>
+          <p>I approached each campaign as an editorial problem, not a marketing one. The first question I asked was: what is the reader thinking when this email lands? What's already on their mind? From that starting point, I rebuilt the email architecture — leading with a problem the reader already had, not a product the client was selling. Subject lines were rewritten as curiosity gaps or specific promises. CTAs were redesigned to feel like logical next steps, not calls to action. I ran A/B variants on tone, length, and hook style — and used the data not as a verdict but as a new brief for the next iteration.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Insight</div>
+          <p>B2B copy fails when it speaks to an organisation instead of a person. The decision-maker reading your email at 11am on a Tuesday has problems, pressures, and priorities. The copy that cut through was always the copy that acknowledged that reality before it asked for anything.</p>
+        </div>
+        <div class="case-study-result">
+          <div class="case-study-result-icon">→</div>
+          <div class="case-study-result-text">CTR rose from <strong>33% to 64%</strong> across the campaign period — nearly doubling performance on the same audience, the same list, and the same send frequency. The only variable was the copy.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-entry reveal">
+    <div class="exp-meta">
+      <div class="exp-period">Aug 2022 – Apr 2023</div>
+      <div class="exp-company">Hanker Systems Inc.</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Lead Content Writer</div>
+      <ul class="exp-bullets">
+        <li>Set a company record for successful proposals within the first four months — RFP writing improved win rate by 20% and secured $70K+ in US federal contracts.</li>
+        <li>Produced pitch decks, case studies, and detailed reports for SaaS/ERP clients including Oracle, Salesforce, and SAP.</li>
+      </ul>
+      <span class="exp-tag highlight">RFP Writing</span>
+      <span class="exp-tag">Federal Contracts</span>
+      <span class="exp-tag">B2B</span>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: HANKER SYSTEMS -->
+  <div class="case-study reveal">
+    <div class="case-study-inner">
+      <div class="case-study-sidebar">
+        <div class="case-study-title">$70K in Federal Contracts, Won on the Strength of Words</div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Organisation</div>
+          <div class="case-study-meta-value">Hanker Systems Inc.</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Market</div>
+          <div class="case-study-meta-value">US Federal · SaaS / ERP</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Format</div>
+          <div class="case-study-meta-value">RFP Responses · Pitch Decks · Reports</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Result</div>
+          <div class="case-study-meta-value">Win rate +20% · $70K+ secured</div>
+        </div>
+      </div>
+      <div class="case-study-body">
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Challenge</div>
+          <p>Federal RFP writing is one of the most demanding forms of professional writing there is. The audience is a procurement panel evaluating dozens of competing proposals against a rigid scoring matrix. There's no room for personality that overshadows compliance, and no room for compliance copy so dry it loses the evaluator. Hanker Systems needed proposals that could satisfy both demands simultaneously — and win against competitors with longer track records and larger teams.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">My Approach</div>
+          <p>I studied the evaluation criteria for each RFP before writing a single word — mapping every required section to the scoring rubric and identifying where differentiation was actually possible. Rather than writing to the minimum requirement, I wrote to the evaluator's question behind the requirement: not just "what is your delivery methodology" but "why should we trust this team to execute under pressure?" For SaaS clients — Oracle, Salesforce, SAP — I translated technical capability into outcomes language, ensuring the proposal spoke the language of value, not just features. Each pitch deck was structured as a narrative: a problem the agency had, a solution we uniquely offered, and evidence we'd done it before.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">What I Discovered</div>
+          <p>Federal procurement panels aren't moved by enthusiasm. They're moved by precision, specificity, and evidence. The proposals that won were the ones that made the evaluator's job easier — clear, scannable, and structured so that every claim was backed before it was made.</p>
+        </div>
+        <div class="case-study-result">
+          <div class="case-study-result-icon">→</div>
+          <div class="case-study-result-text">Set a company record for successful proposals in the first four months. Win rate improved by <strong>20%</strong>. Over <strong>$70,000</strong> in US federal contracts secured — directly attributable to the quality of the written submission.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exp-entry reveal">
+    <div class="exp-meta">
+      <div class="exp-period">May 2018 – Aug 2021</div>
+      <div class="exp-company">Prime Focus Technologies</div>
+    </div>
+    <div class="exp-content">
+      <div class="exp-role">Creative Content Writer</div>
+      <ul class="exp-bullets">
+        <li>Core responsibility: promo and content writing for Hotstar and Voot — synopses, titles, on-platform promotional copy, and viewer-facing descriptions for 500+ pieces of content.</li>
+        <li>Crafted meta content and led thumbnail selection — CTR improved by 15% and viewer retention by 15% across managed titles.</li>
+        <li>Worked embedded within production and creative teams on Voot properties including <em>Bigg Boss</em>, <em>Naagin</em>, and <em>Roadies</em>.</li>
+        <li>Collaborated across creative, marketing, and post-production — developing an understanding of how editing, sound, and visual framing affect how a promo lands.</li>
+      </ul>
+      <span class="exp-tag highlight">OTT · Hotstar · Voot</span>
+      <span class="exp-tag">Promo Writing</span>
+      <span class="exp-tag">500+ Titles</span>
+    </div>
+  </div>
+
+  <!-- CASE STUDY: PRIME FOCUS TECHNOLOGIES -->
+  <div class="case-study reveal">
+    <div class="case-study-inner">
+      <div class="case-study-sidebar">
+        <div class="case-study-title">500 Titles, 15 Words Each — Making People Choose to Watch</div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Organisation</div>
+          <div class="case-study-meta-value">Prime Focus Technologies</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Platforms</div>
+          <div class="case-study-meta-value">Hotstar · Voot</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Properties</div>
+          <div class="case-study-meta-value">Bigg Boss · Naagin · Roadies · 500+ titles</div>
+        </div>
+        <div class="case-study-meta-item">
+          <div class="case-study-meta-label">Impact</div>
+          <div class="case-study-meta-value">+15% CTR · +15% Viewer Retention</div>
+        </div>
+      </div>
+      <div class="case-study-body">
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Context</div>
+          <p>OTT platforms live and die on the scroll. A viewer on Hotstar or Voot has 400 titles competing for the same moment of attention. The thumbnail gets them to stop. The synopsis gets them to click. The promo gets them to stay. At Prime Focus Technologies, I was responsible for all three — writing the metadata, promotional copy, and on-platform descriptions for over 500 titles across three years, spanning flagship reality formats, prime-time drama, and acquired international content.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">The Work</div>
+          <p>Working embedded within production and creative teams gave me something most copywriters don't get: access to the content before it was edited. I sat with post-production on Bigg Boss cuts, understood the emotional arc of each episode, and wrote promos that teased the right moment — the one that would make a non-viewer curious and a regular viewer certain they couldn't miss it. For Naagin, I developed a consistent tone language that balanced supernatural spectacle with emotional stakes. For Roadies, it was urgency and tribalism — the copy had to feel like it was written for someone already invested. Alongside copy, I led thumbnail selection — choosing frames that read as a story in a single image, not just a good still.</p>
+        </div>
+        <div class="case-study-section">
+          <div class="case-study-section-label">What Scaled</div>
+          <p>Volume teaches you to trust instinct. After 500 titles, I could read a piece of content and identify the hook in the first pass — because I had made the same decision, correctly and incorrectly, hundreds of times before. That pattern recognition is something no brief can give you.</p>
+        </div>
+        <div class="case-study-result">
+          <div class="case-study-result-icon">→</div>
+          <div class="case-study-result-text">CTR improved by <strong>15%</strong> across managed titles. Viewer retention on the same titles rose by <strong>15%</strong>. The combination — more people clicking, more people finishing — is the clearest possible signal that the copy was doing its job.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section style="background: var(--cream);">
+  <div class="section-label">Skills & Tools</div>
+  <div class="skills-grid reveal">
+    <div class="skill-block">
+      <div class="skill-block-title">Creative</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Scriptwriting</span>
+        <span class="skill-tag">Promo Writing</span>
+        <span class="skill-tag">Creative Direction</span>
+        <span class="skill-tag">Visual Narrative</span>
+        <span class="skill-tag">Campaign Storytelling</span>
+        <span class="skill-tag">Brand Voice</span>
+        <span class="skill-tag">OTT Content</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Leadership</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Team Management</span>
+        <span class="skill-tag">Mentoring</span>
+        <span class="skill-tag">Creative Briefing</span>
+        <span class="skill-tag">Stakeholder Presentations</span>
+        <span class="skill-tag">End-to-End Campaign Ownership</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Performance</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Campaign Analysis</span>
+        <span class="skill-tag">CTR Optimisation</span>
+        <span class="skill-tag">Audience Targeting</span>
+        <span class="skill-tag">Data-Informed Creative</span>
+        <span class="skill-tag">A/B Variant Writing</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Tools & Tech</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Semrush</span>
+        <span class="skill-tag">Ahrefs</span>
+        <span class="skill-tag">Mailchimp</span>
+        <span class="skill-tag">Canva</span>
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">JIRA</span>
+        <span class="skill-tag">Trello</span>
+        <span class="skill-tag">ChatGPT</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">Photography</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Wedding Photography</span>
+        <span class="skill-tag">Wildlife</span>
+        <span class="skill-tag">360° Visual Content</span>
+        <span class="skill-tag">Google Maps — Gurgaon</span>
+      </div>
+    </div>
+    <div class="skill-block">
+      <div class="skill-block-title">AI & Emerging</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Gen AI Prompting</span>
+        <span class="skill-tag">LLM Visual Prompts</span>
+        <span class="skill-tag">AI-Assisted Workflows</span>
+        <span class="skill-tag">Image & Video Generation</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section>
+  <div class="section-label">Certifications</div>
+  <div class="cert-grid reveal">
+    <div class="cert-card">
+      <div class="cert-org">Deeplearning.AI</div>
+      <div class="cert-name">AI for Everyone</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-org">Google</div>
+      <div class="cert-name">Introduction to Generative AI</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-org">HubSpot / Coursera</div>
+      <div class="cert-name">ChatGPT for Marketing</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-org">Email Marketing</div>
+      <div class="cert-name">Advanced Email Marketing</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-org">SEO</div>
+      <div class="cert-name">Keyword Research Fundamentals</div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-org">Digital</div>
+      <div class="cert-name">Digital Marketing Tools & Techniques</div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section style="background: var(--cream);">
+  <div class="section-label">Awards & Recognition</div>
+  <div class="awards-list reveal">
+    <div class="award-item">
+      <span class="award-bullet">★</span>
+      <span class="award-text">Reliance Photography Contest — 1st Position</span>
+    </div>
+    <div class="award-item">
+      <span class="award-bullet">★</span>
+      <span class="award-text">Readers Write Magazine — Top 10 Photographers</span>
+    </div>
+    <div class="award-item">
+      <span class="award-bullet">★</span>
+      <span class="award-text">Governor's Medal Recipient</span>
+    </div>
+    <div class="award-item">
+      <span class="award-bullet">★</span>
+      <span class="award-text">Parade Commander, Gujarat Battalion — 2012</span>
+    </div>
+    <div class="award-item">
+      <span class="award-bullet">★</span>
+      <span class="award-text">YEP 2013 — Represented Indian Army in Russia</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-name">Neeraj<br><em>Giri</em></div>
+    <div class="footer-tagline">Creative Writer & Storyteller · 2025</div>
+  </div>
+  <div class="footer-contact">
+    <div class="footer-contact-item">
+      <a href="tel:+918140534532">+91 81405 34532</a>
+    </div>
+    <div class="footer-contact-item">
+      <a href="mailto:neerajgiriwhowrites@gmail.com">neerajgiriwhowrites@gmail.com</a>
+    </div>
+    <div class="footer-contact-item" style="font-size:15px; color: rgba(245,240,232,0.4); margin-top: 24px; font-style: normal; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 0.15em;">
+      SCRIPTWRITING · OTT · BRAND · AI · LEADERSHIP
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+  reveals.forEach(el => observer.observe(el));
+
+  // Animate metric numbers on scroll
+  function animateCount(el, target, suffix = '') {
+    let start = 0;
+    const duration = 1400;
+    const step = timestamp => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.floor(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+      else el.textContent = target + suffix;
+    };
+    requestAnimationFrame(step);
+  }
+
+  const metricObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const nums = entry.target.querySelectorAll('.metric-number');
+        const targets = [64, 15, 70, 17];
+        const suffixes = ['%', '%', 'K', '%'];
+        nums.forEach((el, i) => {
+          // Strip the unit span temporarily
+          const text = targets[i] + suffixes[i];
+          const unit = el.querySelector('.metric-unit');
+          const unitChar = unit ? unit.textContent : '';
+          if (unit) unit.remove();
+          el.textContent = '0';
+          setTimeout(() => {
+            animateCount(el, targets[i], '');
+            setTimeout(() => {
+              const u = document.createElement('span');
+              u.className = 'metric-unit';
+              u.textContent = unitChar;
+              el.appendChild(u);
+            }, 1400);
+          }, i * 120);
+        });
+        metricObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const metricsGrid = document.querySelector('.metrics-grid');
+  if (metricsGrid) metricObserver.observe(metricsGrid);
+</script>
+
+</body>
+</html>
